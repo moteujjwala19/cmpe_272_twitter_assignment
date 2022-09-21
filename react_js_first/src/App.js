@@ -4,10 +4,11 @@ import ReactDOM from "react-dom";
 class App extends Component {
   constructor() {
     super();
-    this.state = { query: '',data: [] };
+    this.state = { query: '',data: [], delete:false };
   }
 
   async fetch_tweet(q) {
+    this.state.delete=false;
   console.log(q);
   const requestOptions = {
                 method: 'POST',
@@ -21,6 +22,7 @@ class App extends Component {
   }
 
   async post_tweet(tweet) {
+  this.state.delete=false;
   console.log("tweet : ",tweet);
   const requestOptions = {
                   method: 'POST',
@@ -34,6 +36,7 @@ class App extends Component {
   }
 
   async delete_tweet(id) {
+    this.state.delete=true;
     console.log("tweet : ",id);
     const requestOptions = {
                     method: 'POST',
@@ -47,6 +50,7 @@ class App extends Component {
     }
 
   async my_tweet() {
+    this.state.delete=true;
     const requestOptions = {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' }
@@ -89,11 +93,14 @@ class App extends Component {
               <ol>{el.tweet_id}</ol>
               <ol>{el.user_name}:</ol>
               <ol>{el.tweet}</ol>
-              <button type="button" id="delete_btn"
+
+              {this.state.delete === true && (
+                    <button type="button" id="delete_btn"
                     style={{position: 'relative',float: 'right', margin: 'auto', }}
                     onClick = {
                        ()=>this.delete_tweet(el.tweet_id)
                     } >DELETE</button>
+              )}
             </li>
           ))}
         </ul>
