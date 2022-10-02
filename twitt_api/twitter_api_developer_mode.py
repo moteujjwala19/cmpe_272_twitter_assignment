@@ -5,6 +5,9 @@ from flask import Flask,request
 import requests
 app = Flask(__name__)
 
+
+# Below method is used to retrieve the tweets
+# author - Chinmayi
 @app.route("/get",methods=["POST","GET"])
 def retrieve_tweets():
     client = tweepy.Client(bearer_token=config.bearer_token)
@@ -22,6 +25,8 @@ def retrieve_tweets():
     print("res: ",result)
     return json.dumps(result)
 
+# Below method is used to post the tweets
+# author - Ujwala
 @app.route('/post',methods=["POST","GET"])
 def post_tweet():
     print("coming here");
@@ -36,6 +41,8 @@ def post_tweet():
     )
     return json.dumps(response)
 
+# Below method is used to delete the tweets
+# author - Suma
 @app.route('/delete',methods=["POST","GET"])
 def delete_tweet():
     info = request.get_json()['twitter_id']
@@ -45,6 +52,7 @@ def delete_tweet():
     )
     response = client.delete_tweet(info)
     return json.dumps(response)
+
 
 @app.route('/my_tweet',methods=["POST","GET"])
 def my_tweet():
