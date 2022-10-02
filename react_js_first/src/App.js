@@ -8,6 +8,7 @@ class App extends Component {
   }
 
   //fetch the tweets 
+  // Author Jack
   async fetch_tweet(q) {
     this.state.delete=false;
   console.log(q);
@@ -23,6 +24,7 @@ class App extends Component {
   }
 
   //post tweets
+  // Author Jack
   async post_tweet(tweet) {
   this.state.delete=false;
   console.log("tweet : ",tweet);
@@ -38,6 +40,7 @@ class App extends Component {
   }
 
   //delete tweets
+  // Author Rutvik
   async delete_tweet(id) {
     this.state.delete=true;
     console.log("tweet : ",id);
@@ -53,6 +56,7 @@ class App extends Component {
     }
 
   //display tweets
+  // Author Rutvik
   async my_tweet() {
     this.state.delete=true;
     const requestOptions = {
